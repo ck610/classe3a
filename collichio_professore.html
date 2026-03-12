@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prof. Collichio – Tecnico & Docente</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off: #fafaf9;
+      --light: #f4f3f0;
+      --border: #e8e5df;
+      --mid: #c8c2b8;
+      --muted: #9a9088;
+      --dark: #1a1714;
+      --ink: #2e2a25;
+      --accent: #b85c38;
+      --accent2: #4a6fa5;
+      --gold: #c9a84c;
+      --heading: 'Playfair Display', serif;
+      --body: 'Instrument Sans', sans-serif;
+      --serif: 'Instrument Serif', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ───────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: .01em;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ──────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-left {
+      padding: 10rem 5rem 8rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-right {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: var(--light);
+    }
+
+    /* Geometric art panel */
+    .hero-art {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero-art::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 10%;
+      width: 70%;
+      height: 70%;
+      border: 1px solid var(--mid);
+      border-radius: 2px;
+    }
+
+    .hero-art::after {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 15%;
+      width: 60%;
+      height: 60%;
+      background: var(--white);
+      border-radius: 2px;
+    }
+
+    .hero-art-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .initials-block {
+      width: 220px;
+      height: 220px;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .initials-block::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 1px solid var(--accent);
+    }
+
+    .initials {
+      font-family: var(--heading);
+      font-size: 5rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+
+    /* decorative lines */
+    .hero-line-h {
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--border);
+    }
+    .hero-line-h.top { top: 30%; }
+    .hero-line-h.bottom { bottom: 28%; }
+
+    .hero-line-v {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .hero-line-v.left { left: 30%; }
+    .hero-line-v.right { right: 30%; }
+
+    /* corner marks */
+    .corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+    }
+    .corner::before, .corner::after {
+      content: '';
+      position: absolute;
+      background: var(--accent);
+    }
+    .corner::before { width: 100%; height: 1px; top: 0; left: 0; }
+    .corner::after { width: 1px; height: 100%; top: 0; left: 0; }
+    .corner.tl { top: 3rem; left: 3rem; }
+    .corner.tr { top: 3rem; right: 3rem; transform: scaleX(-1); }
+    .corner.bl { bottom: 3rem; left: 3rem; transform: scaleY(-1); }
+    .corner.br { bottom: 3rem; right: 3rem; transform: scale(-1); }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp .7s .2s forwards;
+    }
+
+    .eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .eyebrow-text {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .25em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: var(--heading);
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      line-height: 1.08;
+      font-weight: 700;
+      color: var(--dark);
+      max-width: 520px;
+      opacity: 0;
+      animation: fadeUp .8s .4s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    .hero-title .line-accent {
+      display: block;
+      position: relative;
+    }
+
+    .hero-sub {
+      margin-top: 2rem;
+      max-width: 400px;
+      font-size: .95rem;
+      color: var(--muted);
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp .8s .6s forwards;
+    }
+
+    .hero-cta {
+      margin-top: 3.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp .8s .8s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .9rem 2.2rem;
+      font-family: var(--body);
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all .3s;
+    }
+
+    .btn-primary {
+      background: var(--dark);
+      color: var(--white);
+      border: 1px solid var(--dark);
+    }
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--dark);
+      color: var(--dark);
+    }
+
+    /* availability pill */
+    .avail-pill {
+      margin-top: 4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      padding: .5rem 1.1rem;
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp .7s 1.1s forwards;
+    }
+
+    .avail-dot {
+      width: 7px; height: 7px;
+      background: #3d9e4a;
+      border-radius: 50%;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(61,158,74,.4); }
+      50%      { opacity: .8; transform: scale(1.2); box-shadow: 0 0 0 5px rgba(61,158,74,0); }
+    }
+
+    /* ── MARQUEE ───────────────────────────── */
+    .marquee-wrap {
+      overflow: hidden;
+      background: var(--dark);
+      padding: 1.2rem 0;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0 2rem;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+
+    .marquee-dot {
+      width: 4px; height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SECTIONS ──────────────────────────── */
+    .section {
+      padding: 8rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    .section-num {
+      font-family: var(--heading);
+      font-size: 1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .section-label {
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: var(--heading);
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    /* ── ABOUT ─────────────────────────────── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 5fr 4fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.3rem;
+      font-size: .95rem;
+      line-height: 1.8;
+    }
+
+    .about-text strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .quote-block {
+      margin: 2.5rem 0;
+      padding: 1.5rem 2rem;
+      border-left: 2px solid var(--accent);
+      background: var(--off);
+    }
+
+    .quote-block p {
+      font-family: var(--heading);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--ink) !important;
+      margin: 0 !important;
+      line-height: 1.6;
+    }
+
+    /* skills list – clean editorial */
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.3rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: default;
+      transition: padding .25s;
+    }
+    .skill-row:first-child { border-top: 1px solid var(--border); }
+
+    .skill-row:hover { padding-left: .5rem; }
+
+    .skill-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .skill-num {
+      font-family: var(--heading);
+      font-size: .72rem;
+      font-style: italic;
+      color: var(--mid);
+    }
+
+    .skill-name {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .skill-pct {
+      font-family: var(--heading);
+      font-size: .8rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* ── STATS ─────────────────────────────── */
+    .stats-band {
+      background: var(--dark);
+      padding: 5rem 4rem;
+    }
+
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .stat-card {
+      padding: 3rem;
+      border-right: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+    }
+
+    .stat-card:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: var(--heading);
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-accent {
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      color: rgba(255,255,255,.4);
+      text-transform: uppercase;
+      margin-top: .8rem;
+      display: block;
+    }
+
+    /* ── CORSI / SERVICES ──────────────────── */
+    .courses-section {
+      background: var(--off);
+      padding: 8rem 4rem;
+    }
+
+    .courses-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 4rem;
+    }
+
+    .course-card {
+      background: var(--white);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s;
+    }
+
+    .course-card:hover { transform: translateY(-4px); }
+
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s;
+    }
+
+    .course-card:hover::before { transform: scaleX(1); }
+
+    .course-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    .course-title {
+      font-family: var(--heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+
+    .course-desc {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .course-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .course-tag {
+      font-size: .67rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      background: var(--light);
+      color: var(--muted);
+      border-radius: 2px;
+    }
+
+    /* ── TESTIMONIALS ──────────────────────── */
+    .testimonials-section {
+      padding: 8rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .testi-card {
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .testi-quote-mark {
+      font-family: var(--heading);
+      font-size: 4rem;
+      line-height: .6;
+      color: var(--border);
+      font-style: italic;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .testi-text {
+      font-size: .92rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .testi-avatar {
+      width: 38px; height: 38px;
+      background: var(--dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--heading);
+      font-size: .85rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .testi-name {
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .testi-role {
+      font-size: .72rem;
+      color: var(--muted);
+      margin-top: .1rem;
+    }
+
+    /* ── CONTACT / FOOTER ──────────────────── */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 7rem 4rem 3rem;
+    }
+
+    .footer-top {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 5fr 4fr;
+      gap: 6rem;
+      padding-bottom: 5rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-title {
+      font-family: var(--heading);
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      line-height: 1.1;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .footer-sub {
+      color: rgba(255,255,255,.45);
+      font-size: .92rem;
+      max-width: 380px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+
+    .contact-icon {
+      width: 42px; height: 42px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: .67rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .2rem;
+    }
+
+    .contact-val {
+      font-size: .9rem;
+      color: rgba(255,255,255,.7);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .contact-val:hover { color: var(--white); }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 2.5rem auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-size: .72rem;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.3);
+      text-transform: uppercase;
+    }
+
+    /* ── DIVIDER LINE ──────────────────────── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── ANIMATIONS ────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* staggered children */
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal-stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:.0s; }
+    .reveal-stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:.12s; }
+    .reveal-stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:.24s; }
+    .reveal-stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:.36s; }
+
+    /* ── RESPONSIVE ────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 8rem 1.5rem 4rem; }
+      .hero-right { height: 340px; }
+      .section { padding: 5rem 1.5rem; }
+      .about-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+      .courses-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 3.5rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .courses-section { padding: 5rem 1.5rem; }
+      .testimonials-section { padding: 5rem 1.5rem; }
+      footer { padding: 5rem 1.5rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Prof. <span>Collichio</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">Chi sono</a></li>
+      <li><a href="#corsi">Corsi</a></li>
+      <li><a href="#contact">Contatti</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Tecnico · Docente · Innovatore</span>
+      </div>
+
+      <h1 class="hero-title">
+        Prof.<br>
+        <em>Collichio</em>
+      </h1>
+
+      <p class="hero-sub">
+        Tecnico specializzato e docente con anni di esperienza nella
+        formazione tecnica, nello sviluppo di soluzioni digitali e
+        nell'insegnamento di informatica applicata.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#about" class="btn btn-primary">Scopri il profilo</a>
+        <a href="#contact" class="btn btn-outline">Contattami</a>
+      </div>
+
+      <div class="avail-pill">
+        <span class="avail-dot"></span>
+        Disponibile per lezioni e consulenze
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-art">
+        <div class="hero-line-h top"></div>
+        <div class="hero-line-h bottom"></div>
+        <div class="hero-line-v left"></div>
+        <div class="hero-line-v right"></div>
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+      </div>
+      <div class="hero-art-inner">
+        <div class="initials-block">
+          <span class="initials">C</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Informatica <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Sistemi & Reti <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Programmazione <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Elettronica <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Didattica Tecnica <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Cybersecurity <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Automazione <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Istituto Tecnico Prato <span class="marquee-dot"></span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="marquee-item">Informatica <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Sistemi & Reti <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Programmazione <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Elettronica <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Didattica Tecnica <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Cybersecurity <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Automazione <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Istituto Tecnico Prato <span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- CHI SONO -->
+  <section class="section" id="about">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <span class="section-label">Profilo</span>
+    </div>
+    <h2 class="section-title reveal">Chi sono</h2>
+
+    <div class="about-layout">
+      <div class="about-text reveal">
+        <p>
+          Sono <strong>Professor Collichio</strong>, tecnico specializzato e docente
+          nel campo della <strong>tecnologia e dell'informatica applicata</strong>.
+          La mia carriera unisce la pratica sul campo con la passione per la didattica.
+        </p>
+        <p>
+          Nel corso degli anni ho maturato competenze trasversali che spaziano dalla
+          gestione di <strong>sistemi complessi</strong> all'insegnamento di discipline
+          tecniche a studenti di ogni livello.
+        </p>
+
+        <div class="quote-block">
+          <p>"La tecnologia non è solo uno strumento — è un linguaggio che insegno ai miei studenti a parlare con fluidità."</p>
+        </div>
+
+        <p>
+          Il mio approccio è <strong>metodico, rigoroso e orientato ai risultati</strong>:
+          ogni problema tecnico è un'opportunità per trovare soluzioni eleganti ed
+          efficienti. In aula, traduco la complessità in concetti accessibili e
+          stimolanti per i ragazzi.
+        </p>
+      </div>
+
+      <div class="skills-list reveal">
+        <div class="skill-row">
+          <div class="skill-left">
+            <span class="skill-num">01</span>
+            <span class="skill-name">Sistemi & Reti</span>
+          </div>
+          <span class="skill-pct">92%</span>
+        </div>
+        <div class="skill-row">
+          <div class="skill-left">
+            <span class="skill-num">02</span>
+            <span class="skill-name">Programmazione</span>
+          </div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-row">
+          <div class="skill-left">
+            <span class="skill-num">03</span>
+            <span class="skill-name">Didattica Tecnica</span>
+          </div>
+          <span class="skill-pct">96%</span>
+        </div>
+        <div class="skill-row">
+          <div class="skill-left">
+            <span class="skill-num">04</span>
+            <span class="skill-name">Elettronica</span>
+          </div>
+          <span class="skill-pct">78%</span>
+        </div>
+        <div class="skill-row">
+          <div class="skill-left">
+            <span class="skill-num">05</span>
+            <span class="skill-name">Cybersecurity</span>
+          </div>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-row">
+          <div class="skill-left">
+            <span class="skill-num">06</span>
+            <span class="skill-name">Automazione</span>
+          </div>
+          <span class="skill-pct">74%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- STATS -->
+  <div class="stats-band">
+    <div class="stats-inner reveal-stagger">
+      <div class="stat-card">
+        <span class="stat-num">15<span class="stat-accent">+</span></span>
+        <span class="stat-label">Anni di esperienza</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">500<span class="stat-accent">+</span></span>
+        <span class="stat-label">Studenti formati</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">40<span class="stat-accent">+</span></span>
+        <span class="stat-label">Progetti realizzati</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORSI & MATERIE -->
+  <section class="courses-section" id="corsi">
+    <div class="courses-inner">
+      <div class="section-header reveal">
+        <span class="section-num">02</span>
+        <span class="section-label">Materie & Corsi</span>
+      </div>
+      <h2 class="section-title reveal">Cosa insegno</h2>
+
+      <div class="courses-grid reveal-stagger">
+        <div class="course-card">
+          <span class="course-icon">💻</span>
+          <h3 class="course-title">Informatica & Programmazione</h3>
+          <p class="course-desc">
+            Dalla logica di base agli algoritmi avanzati. Insegno a programmare
+            con un approccio pratico, risolvendo problemi reali e sviluppando
+            applicazioni complete.
+          </p>
+          <div class="course-tag-list">
+            <span class="course-tag">Python</span>
+            <span class="course-tag">Java</span>
+            <span class="course-tag">HTML/CSS</span>
+            <span class="course-tag">Algoritmi</span>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <span class="course-icon">🌐</span>
+          <h3 class="course-title">Sistemi & Reti</h3>
+          <p class="course-desc">
+            Configurazione e gestione di reti locali, server, protocolli TCP/IP
+            e sicurezza delle infrastrutture. Laboratori pratici con hardware reale.
+          </p>
+          <div class="course-tag-list">
+            <span class="course-tag">TCP/IP</span>
+            <span class="course-tag">Linux</span>
+            <span class="course-tag">Cisco</span>
+            <span class="course-tag">Firewall</span>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <span class="course-icon">⚡</span>
+          <h3 class="course-title">Elettronica & Automazione</h3>
+          <p class="course-desc">
+            Progettazione di circuiti elettronici, microcontrollori e sistemi
+            di automazione. Dai sensori ai PLC, con applicazioni nel mondo industriale.
+          </p>
+          <div class="course-tag-list">
+            <span class="course-tag">Arduino</span>
+            <span class="course-tag">PLC</span>
+            <span class="course-tag">Circuiti</span>
+            <span class="course-tag">Sensori</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTATTI -->
+  <footer id="contact">
+    <div class="footer-top">
+      <div>
+        <p class="section-label reveal" style="color: rgba(255,255,255,.35); margin-bottom: 1.5rem;">Contatti</p>
+        <h2 class="footer-title reveal">
+          Parliamo di<br><em>tecnologia</em>
+        </h2>
+        <p class="footer-sub reveal">
+          Sono disponibile per consulenze, collaborazioni didattiche
+          e progetti tecnici. Non esitare a contattarmi.
+        </p>
+        <a href="mailto:collichio@istitutoprato.edu.it" class="btn btn-primary reveal" style="margin-top:1rem;">
+          Scrivimi un'email →
+        </a>
+      </div>
+
+      <ul class="contact-items reveal">
+        <li class="contact-item">
+          <div class="contact-icon">✉</div>
+          <div>
+            <p class="contact-label">Email</p>
+            <a href="mailto:collichio@istitutoprato.edu.it" class="contact-val">collichio@istitutoprato.edu.it</a>
+          </div>
+        </li>
+        <li class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <p class="contact-label">Sede</p>
+            <p class="contact-val">Istituto Tecnico, Prato (PO)</p>
+          </div>
+        </li>
+        <li class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <p class="contact-label">Telefono</p>
+            <a href="tel:+390574000000" class="contact-val">+39 0574 000 000</a>
+          </div>
+        </li>
+        <li class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <p class="contact-label">Disponibilità</p>
+            <p class="contact-val">Lun – Ven, ore 8:00 – 18:00</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Prof. Collichio · Tecnico & Docente</p>
+      <p>Prato, Toscana · Italia</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal, .reveal-stagger');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
